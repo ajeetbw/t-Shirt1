@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - T-Shirt Store</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>T-Shirt Store</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="cart-container">
+        <h2>Your Cart</h2>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+
+        <div class="cart-summary">
+            <p>Total: <span class="total">$0.00</span></p>
+            <button>Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 T-Shirt Store</p>
+    </footer>
+
+    <script>
+        async function loadCart() {
+            const response = await fetch('http://localhost:3000/api/cart');
+            const cartItems = await response.json();
+            const cartItemsContainer = document.querySelector('.cart-items');
+            let total = 0;
+
+            cartItems.forEach(item => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+                cartItemElement.innerHTML = `
+                    <img src="${item.productId.image}" alt="${item.productId.name}">
+                    <div class="cart-item-info">
+                        <h3>${item.productId.name}</h3>
+                        <p>Size: ${item.size} | Color: ${item.color}</p>
+                        <p>$${item.productId.price} x ${item.quantity}</p>
+                    </div>
+                    <button onclick="removeFromCart('${item._id}')">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+
+                total += item.productId.price * item.quantity;
+            });
+
+            document.querySelector('.total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        async function removeFromCart(cartItemId) {
+            const response = await fetch(`http://localhost:3000/api/cart/${cartItemId}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                alert('Item removed from cart');
+                loadCart();
+            } else {
+                alert('Failed to remove item');
+            }
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

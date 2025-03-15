@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Frequently Asked Questions</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+        }
+
+        .faq-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-item button {
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            text-align: left;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item button:hover {
+            background-color: #2980b9;
+        }
+
+        .faq-item button:focus {
+            background-color: #2980b9;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-left: 4px solid #3498db;
+            display: none;
+            margin-top: 5px;
+            font-size: 1.1em;
+            color: #555;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Frequently Asked Questions (FAQ)</h1>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <button class="accordion">What is the return policy?</button>
+                <div class="faq-answer">
+                    <p>You can return any items within 30 days of receiving your order, as long as the items are in their original condition with tags attached. Please refer to our Return & Exchange page for more details.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="accordion">How do I track my order?</button>
+                <div class="faq-answer">
+                    <p>Once your order has shipped, you will receive a tracking number via email. You can use this number to track your order through our courier's website.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="accordion">What payment methods do you accept?</button>
+                <div class="faq-answer">
+                    <p>We accept a wide variety of payment methods, including credit cards (Visa, MasterCard, American Express), PayPal, and Apple Pay. You can choose your preferred method at checkout.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="accordion">How can I contact customer support?</button>
+                <div class="faq-answer">
+                    <p>You can contact our customer support team via email at <a href="mailto:support@example.com">support@example.com</a> or by phone at +1 800 123 4567. We are available 24/7 to assist you.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="accordion">Do you offer international shipping?</button>
+                <div class="faq-answer">
+                    <p>Yes! We offer international shipping to most countries. Shipping rates vary depending on the destination. Please check our Shipping Information page for more details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get all the buttons with the "accordion" class
+        var acc = document.getElementsByClassName("accordion");
+
+        // Loop through all the buttons and add an event listener
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                // Toggle the 'active' class on the clicked button
+                this.classList.toggle("active");
+
+                // Get the corresponding answer
+                var answer = this.nextElementSibling;
+
+                // Toggle visibility of the answer
+                if (answer.style.display === "block") {
+                    answer.style.display = "none";
+                } else {
+                    answer.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
